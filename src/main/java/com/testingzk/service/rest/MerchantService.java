@@ -73,7 +73,7 @@ public class MerchantService {
 			
 			System.out.println(new ObjectMapper().writeValueAsString(value));
 			
-			if (value.getStatus().equalsIgnoreCase("201")) {
+			if (value.getHttpCode().equalsIgnoreCase("201")) {
 				flag = true;
 			}
 		}

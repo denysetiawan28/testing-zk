@@ -1,23 +1,25 @@
 <?page title="Merchant" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window id="winHome" title="new page title" border="normal" apply="com.testingzk.controller.login.HomeController">
+<window id="winHome" title="new page title" border="normal" apply="com.testingzk.controller.home.HomeController">
 <grid id="merchantGrid">
 	<rows>
 		<row>
 			<textbox id="txtMerchantEmail" name="txtMerchantEmail" placeholder="Merchant email..."></textbox>
 			<textbox id="txtMerchantName" name="txtMerchantName" placeholder="Merchant name..."></textbox>
 			<textbox id="txtMerchantPhone" name="txtMerchantPhone" placeholder="Merchant Phone"></textbox>
-			<button id="btnMerchantJoin" label="Join as Merchant" tooltiptext="Join as merchant" forward="onClickJoinAsMerchant" />
+			<button id="btnMerchantJoin" label="Join as Merchant" tooltiptext="Join as merchant" forward="onClickJoinAsMerchant" autodisable="true" />
 		</row>
 		<row>
 			<cell colspan="4">
-				<button id="btnGetDataMerchant" label="View All Merchant" tooltiptext="View merchant data" forward="onClickGetDataMerchant" />
+				<button id="btnAddDataMerchant" label="Add Merchant" tooltiptext="Add merchant data" forward="onClickAddDataMerchant" autodisable="true" />
+				<button id="btnGetDataMerchant" label="View All Merchant" tooltiptext="View merchant data" forward="onClickGetDataMerchant" autodisable="true" />
 			</cell>
 		</row>
 		<row>
 			<cell colspan="4">
 				<listbox id="listBoxMerchant" name="listBoxMerchant" emptyMessage="No Data Found" checkmark="true" multiple="true" mold="paging" pageSize="5">
 					<listhead sizable="true">
+						<listheader width="50px"/>
 						<listheader label="Merchant Name" sort="auto(merchantName)" />
 						<listheader label="Merchant Email" sort="auto(merchantEmail)" />
 						<listheader label="Merchant Description" sort="auto(merchantDescription)" />
@@ -27,6 +29,7 @@
 					</listhead>
 					<template name="model">
 						<listitem value="${each}">
+							<listcell />
 							<listcell label="${each.merchantName}" />
 							<listcell label="${each.merchantEmail}" />
 							<listcell label="${each.merchantDescription}" />

@@ -1,0 +1,83 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Add New Merchant" border="normal" closable="true" width="50%" apply="com.testingzk.controller.home.HomePopUpController">
+<grid>
+	<rows>
+		<row>
+			<label value="Merchant Name" />
+			<textbox id="txtMerchantName" name="txtMerchantName" placeholder="Merchant name..."/>
+		</row>
+		<row>
+			<label value="Merchant description" />
+			<textbox id="txtMerchantDesc" name="txtMerchantDesc" placeholder="Merchant description..."/>
+		</row>
+		<row>
+			<label value="Merchant Email" />
+			<textbox id="txtMerchantEmail" name="txtMerchantEmail" placeholder="Merchant email..."/>
+		</row>
+		<row>
+			<label value="Merchant Website" />
+			<textbox id="txtMerchantWebsite" name="txtMerchantWebsite" placeholder="Merchant website..."/>
+		</row>
+		<row>
+			<label value="Merchant Social Media" />
+			<textbox id="txtMerchantSocialMedia" name="txtMerchantSocialMedia" placeholder="Merchant social media..."/>
+		</row>
+		<row>
+			<label value="Merchant Address" />
+			<textbox id="txtMerchantAddress" name="txtMerchantAddress" placeholder="Merchant address.."/>
+		</row>
+		<row>
+			<label value="Merchant Type" />
+			<!-- <textbox id="txtMerchantType" name="txtMerchantType" placeholder="Merchant type..."/> -->
+			<combobox id="cmbMerchantType" name="cmbMerchantType"/>
+		</row>
+		<row>
+			<label value="Merchant Company Type" />
+			<!-- <textbox id="txtMerchantCompanyType" name="txtMerchantCompanyType" placeholder="Merchant company type..."/> -->
+			<bandbox id="bnbMerchantCompanyType" width="400px">
+				<bandpopup>
+					<grid width="350px">
+						<rows>
+							<row>
+								<hbox>
+									<textbox id="txtSearchCompanyType" name="txtSearchCompanyType" placeholder="Search company type..."/>
+									<button id="btnSearchCompanyType" label="Search" />
+								</hbox>
+							</row>
+							<row>
+								<hbox>
+									<listbox onSelect="bnbMerchantCompanyType.close()" width="350px" emptyMessage="No Data Found">
+										<listhead>
+											<listheader />
+										</listhead>
+										<template name="model">
+											<listitem>
+												<listcell label="bbbb" />
+											</listitem>
+										</template>
+									</listbox>
+								</hbox>
+							</row>
+						</rows>
+					</grid>
+				</bandpopup>
+			</bandbox>
+		</row>
+		<row>
+			<label value="Merchant Logo" />
+			<textbox id="txtMerchantLogo" name="txtMerchantLogo" placeholder="Merchant logo..."/>
+		</row>
+		<row>
+			<label value="Merchant name" />
+			<textbox id="txtMerchantCreatedBy" name="txtMerchantCreatedBy" placeholder="Merchant Name..."/>
+		</row>
+		<row>
+			<cell colspan="2">
+				<button id="btnAddNewMerchant" label="Add New Merchant" autodisable="true"/>
+			</cell>
+		</row>
+	</rows>
+</grid>
+</window>
+</zk>
