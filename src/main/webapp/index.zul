@@ -1,6 +1,23 @@
 <?page title="Testing" contentType="text/html;charset=UTF-8"?>
 <zk>
-<window title="Testing" border="normal">
-New Content Here!
+<window title="Testing" border="normal" width="100%" apply="com.testingzk.controller.login.LoginController">
+<hbox hflex="min" align="center">
+	<grid id="gridLogin" hflex="min">
+		<columns width="50%">
+			<column></column>
+		</columns>
+		<rows width="50%">
+			<row>
+				<textbox id="txtUsername" name="txtUsername"  placeholder="Username..."/>
+			</row>
+			<row>
+				<textbox id="txtPassword" name="txtPassword"  type="password" placeholder="Password..."/>
+			</row>
+			<row>
+				<button id="btnLogin" label="Sign In" />
+			</row>
+		</rows>
+	</grid>
+</hbox>
 </window>
 </zk>

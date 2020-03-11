@@ -1,0 +1,44 @@
+<?page title="Merchant" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="winHome" title="new page title" border="normal" apply="com.testingzk.controller.login.HomeController">
+<grid id="merchantGrid">
+	<rows>
+		<row>
+			<textbox id="txtMerchantEmail" name="txtMerchantEmail" placeholder="Merchant email..."></textbox>
+			<textbox id="txtMerchantName" name="txtMerchantName" placeholder="Merchant name..."></textbox>
+			<textbox id="txtMerchantPhone" name="txtMerchantPhone" placeholder="Merchant Phone"></textbox>
+			<button id="btnMerchantJoin" label="Join as Merchant" tooltiptext="Join as merchant" forward="onClickJoinAsMerchant" />
+		</row>
+		<row>
+			<cell colspan="4">
+				<button id="btnGetDataMerchant" label="View All Merchant" tooltiptext="View merchant data" forward="onClickGetDataMerchant" />
+			</cell>
+		</row>
+		<row>
+			<cell colspan="4">
+				<listbox id="listBoxMerchant" name="listBoxMerchant" emptyMessage="No Data Found" checkmark="true" multiple="true" mold="paging" pageSize="5">
+					<listhead sizable="true">
+						<listheader label="Merchant Name" sort="auto(merchantName)" />
+						<listheader label="Merchant Email" sort="auto(merchantEmail)" />
+						<listheader label="Merchant Description" sort="auto(merchantDescription)" />
+						<listheader label="Merchant Website" sort="auto(merchantWebsite)" />
+						<listheader label="Merchant Social Media" sort="auto(merchantSocialMedia)" />
+						<listheader label="Merchant Address" sort="auto(merchantAddress)" />
+					</listhead>
+					<template name="model">
+						<listitem value="${each}">
+							<listcell label="${each.merchantName}" />
+							<listcell label="${each.merchantEmail}" />
+							<listcell label="${each.merchantDescription}" />
+							<listcell label="${each.merchantWebsite}" />
+							<listcell label="${each.merchantSocialMedia}" />
+							<listcell label="${each.merchantAddress}" />
+						</listitem>
+					</template>
+				</listbox>
+			</cell>
+		</row>
+	</rows>
+</grid>
+</window>
+</zk>
