@@ -1,5 +1,6 @@
 package com.testingzk.controller.home;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,9 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
+import com.testingzk.model.Account;
 import com.testingzk.model.Merchant;
+import com.testingzk.model.dto.JoinAsAccountDTO;
 import com.testingzk.model.dto.JoinAsMerchantDTO;
 import com.testingzk.service.rest.MerchantService;
 
@@ -34,10 +37,10 @@ public class HomeController extends SelectorComposer<Component> {
 	private Listbox listBoxMerchant;
 	
 	@Wire
-	private Textbox txtMerchantEmail, txtMerchantName, txtMerchantPhone;
+	private Textbox txtAccountName, txtAccountEmail, txtAccountGender;
 
 	@Wire
-	private Button btnMerchantJoin, btnGetDataMerchant;
+	private Button btnAccountJoin, btnGetDataMerchant;
 	
 	private MerchantService merchantService = new MerchantService();
 	
@@ -47,25 +50,43 @@ public class HomeController extends SelectorComposer<Component> {
 		super.doAfterCompose(comp);
 	}
 	
-	@Listen("onClickGetDataMerchant = #winHome")
+	@Listen("onClickGetDataAccount = #winHome")
 	public void onClickGetDataMerchant(ForwardEvent e) {
-		List<Merchant> listMerchant = merchantService.getAllVoucher();
-		ListModelList<Merchant> listMerchantModel = new ListModelList<Merchant>(listMerchant);
+		System.out.println("IN");
+		List<Account> result = merchantService.getAllAccount();
+		List<Map<String, Object>> tempList = new ArrayList<Map<String,Object>>();
+		for (Account val : result) {
+			Map<String, Object> newMap = new LinkedHashMap<String, Object>();
+			newMap.put("accountName", val.getAccountName());
+			newMap.put("accountCompany", val.getAccountCompany());
+			
+			tempList.add(newMap);
+			System.out.println("Name : "+val.getAccountName());
+			System.out.println("Company : "+val.getAccountCompany());
+		}
+		//List<Merchant> listMerchant = merchantService.getAllVoucher();
+		
+		ListModelList<Account> listMerchantModel = new ListModelList<Account>(result);
 		listMerchantModel.setMultiple(true);
 		
 		listBoxMerchant.setModel(listMerchantModel);
 		listBoxMerchant.renderAll();
 	}
 	
-	@Listen("onClickJoinAsMerchant = #winHome")
-	public void onClickJoinAsMerchant(ForwardEvent e) {
+	@Listen("onClickJoinAsAccount = #winHome")
+	public void onClickJoinAsAccount(ForwardEvent e) {
 		System.out.println("--in--");
-		System.out.println(txtMerchantEmail.getValue());
-		System.out.println(txtMerchantName.getValue());
-		System.out.println(txtMerchantPhone.getValue());
+		//System.out.println(txtMerchantEmail.getValue());
+		//System.out.println(txtMerchantName.getValue());
+		//System.out.println(txtMerchantPhone.getValue());
 		boolean flag = false;
 		
-		flag = merchantService.joinAsMerchant(new JoinAsMerchantDTO(txtMerchantEmail.getValue(),txtMerchantName.getValue(), txtMerchantPhone.getValue()));
+		JoinAsAccountDTO temp = new JoinAsAccountDTO();
+		temp.setAccountName(txtAccountName.getValue());
+		temp.setAccountEmail(txtAccountEmail.getValue());
+		temp.setAccountGender(txtAccountGender.getValue());
+		
+		flag = merchantService.joinAsAccount(temp);
 		
 		if (flag) {
 			//btnMerchantJoin.setDisabled(false);
@@ -81,7 +102,7 @@ public class HomeController extends SelectorComposer<Component> {
 		Window winPopUp = null;
 		//listBoxMerchant.getSele
 		if (listBoxMerchant.getSelectedCount() <= 1) {
-			Merchant merchant = listBoxMerchant.getSelectedItem() != null ? (Merchant) listBoxMerchant.getSelectedItem().getValue() : null;
+			Account merchant = listBoxMerchant.getSelectedItem() != null ? (Account) listBoxMerchant.getSelectedItem().getValue() : null;
 			Map<String, Object> throwParam = new LinkedHashMap<String, Object>();
 			throwParam.put("listOfMerchant", merchant);
 			

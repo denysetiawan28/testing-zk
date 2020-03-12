@@ -4,38 +4,38 @@
 <grid id="merchantGrid">
 	<rows>
 		<row>
-			<textbox id="txtMerchantEmail" name="txtMerchantEmail" placeholder="Merchant email..."></textbox>
-			<textbox id="txtMerchantName" name="txtMerchantName" placeholder="Merchant name..."></textbox>
-			<textbox id="txtMerchantPhone" name="txtMerchantPhone" placeholder="Merchant Phone"></textbox>
-			<button id="btnMerchantJoin" label="Join as Merchant" tooltiptext="Join as merchant" forward="onClickJoinAsMerchant" autodisable="true" />
+			<textbox id="txtAccountName" name="txtAccountName" placeholder="Account name..."></textbox>
+			<textbox id="txtAccountEmail" name="txtAccountEmail" placeholder="Account email..."></textbox>
+			<textbox id="txtAccountGender" name="txtAccountGender" placeholder="Account Gender"></textbox>
+			<button id="btnAccountJoin" label="Join as Account" tooltiptext="Join account" forward="onClickJoinAsAccount" autodisable="true" />
 		</row>
 		<row>
 			<cell colspan="4">
 				<button id="btnAddDataMerchant" label="Add Merchant" tooltiptext="Add merchant data" forward="onClickAddDataMerchant" autodisable="true" />
-				<button id="btnGetDataMerchant" label="View All Merchant" tooltiptext="View merchant data" forward="onClickGetDataMerchant" autodisable="true" />
+				<button id="btnGetDataAccount" label="View All Account" tooltiptext="View account data" forward="onClickGetDataAccount" autodisable="true" />
 			</cell>
 		</row>
 		<row>
 			<cell colspan="4">
-				<listbox id="listBoxMerchant" name="listBoxMerchant" emptyMessage="No Data Found" checkmark="true" multiple="true" mold="paging" pageSize="5">
+				<listbox id="listBoxMerchant" name="listBoxMerchant" emptyMessage="No Data Found" checkmark="true" multiple="true" mold="paging" pageSize="2">
 					<listhead sizable="true">
 						<listheader width="50px"/>
-						<listheader label="Merchant Name" sort="auto(merchantName)" />
-						<listheader label="Merchant Email" sort="auto(merchantEmail)" />
-						<listheader label="Merchant Description" sort="auto(merchantDescription)" />
-						<listheader label="Merchant Website" sort="auto(merchantWebsite)" />
-						<listheader label="Merchant Social Media" sort="auto(merchantSocialMedia)" />
-						<listheader label="Merchant Address" sort="auto(merchantAddress)" />
+						<listheader label="Merchant Name" sort="auto(accountName)" />
+						<listheader label="Merchant Email" sort="auto(accountEmail)" />
+						<listheader label="Merchant Description" sort="auto(accountGender)" />
+						<listheader label="Merchant Website" sort="auto(accountAddress)" />
+						<listheader label="Merchant Social Media" sort="auto(accountPhoneNo)" />
+						<listheader label="Merchant Address" sort="auto(accountCompany)" />
 					</listhead>
 					<template name="model">
 						<listitem value="${each}">
 							<listcell />
-							<listcell label="${each.merchantName}" />
-							<listcell label="${each.merchantEmail}" />
-							<listcell label="${each.merchantDescription}" />
-							<listcell label="${each.merchantWebsite}" />
-							<listcell label="${each.merchantSocialMedia}" />
-							<listcell label="${each.merchantAddress}" />
+							<listcell label="${each.accountName}" />
+							<listcell label="${each.accountEmail}" />
+							<listcell label="${each.accountGender}" />
+							<listcell label="${each.accountAddress}" />
+							<listcell label="${each.accountPhoneNo}" />
+							<listcell label="${each.accountCompany}" />
 						</listitem>
 					</template>
 				</listbox>

@@ -10,8 +10,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.testingzk.model.Account;
 import com.testingzk.model.GlobalResponse;
 import com.testingzk.model.Merchant;
+import com.testingzk.model.dto.JoinAsAccountDTO;
 import com.testingzk.model.dto.JoinAsMerchantDTO;
 
 
@@ -52,6 +54,61 @@ public class MerchantService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public List<Account> getAllAccount() {
+		String location = "http://localhost:9080/account/api/get-data";
+		List<Account> result = null;
+		RestTemplate template = new RestTemplate();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		
+		HashMap<String, Object> body = new HashMap<String, Object>();
+		
+		try {
+			String json = new ObjectMapper().writeValueAsString(body);
+			
+			HttpEntity<String> entity = new HttpEntity<String>(json, headers);
+			String response = template.postForObject(location, entity, String.class);
+
+			ObjectMapper mapper = new ObjectMapper();
+			Account[] val = mapper.readValue(response, Account[].class);
+
+			result = Arrays.asList(val);
+
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public boolean joinAsAccount(JoinAsAccountDTO data) {
+		String location = "http://localhost:9080/account/api/join";
+		boolean flag = false;
+		
+		RestTemplate template = new RestTemplate();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		
+		try {
+			String json = new ObjectMapper().writeValueAsString(data);
+			HttpEntity<String> entity = new HttpEntity<String>(json, headers);
+			String response = template.postForObject(location, entity, String.class);
+			
+			//ObjectMapper mapper = new ObjectMapper();
+			//GlobalResponse value = mapper.readValue(response, GlobalResponse.class);
+			
+			//System.out.println(new ObjectMapper().writeValueAsString(value));
+			
+			flag = true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
 	}
 	
 	public boolean joinAsMerchant(JoinAsMerchantDTO data) {

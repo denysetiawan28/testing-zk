@@ -13,7 +13,10 @@ import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.ComboitemRenderer;
 import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Textbox;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.testingzk.model.Account;
 import com.testingzk.model.DummyMerchantType;
 import com.testingzk.model.Merchant;
 
@@ -26,6 +29,9 @@ public class HomePopUpController extends SelectorComposer<Component> {
 
 	@Wire
 	private Combobox cmbMerchantType;
+	
+	@Wire
+	private Textbox txtMerchantName;
 	
 	@Override
 	@SuppressWarnings("unchecked")
@@ -54,9 +60,14 @@ public class HomePopUpController extends SelectorComposer<Component> {
 		
 		Map<String, Object> getThrowParam = (Map<String, Object>) Executions.getCurrent().getArg();
 		
-		Merchant merchant = (Merchant) getThrowParam.get("listOfMerchant");
+		Account account = (Account) getThrowParam.get("listOfMerchant");
+		System.out.println(new ObjectMapper().writeValueAsString(account));
+		if (account != null) {
+			txtMerchantName.setValue(account.getAccountName());
+			txtMerchantName.setReadonly(true);
+		}
 		
-		System.out.println(merchant);
+		
 		
 		
 	}

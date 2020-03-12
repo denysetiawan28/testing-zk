@@ -9,8 +9,8 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class JoinAsMerchantDTO {
-	private String merchantEmail;
-	private String merchantName;
-	private String merchantPhoneNo;
+public class JoinAsAccountDTO {
+	private String accountName;
+	private String accountEmail;
+	private String accountGender;
 }

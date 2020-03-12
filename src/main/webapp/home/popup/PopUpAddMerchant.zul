@@ -30,7 +30,7 @@
 		<row>
 			<label value="Merchant Type" />
 			<!-- <textbox id="txtMerchantType" name="txtMerchantType" placeholder="Merchant type..."/> -->
-			<combobox id="cmbMerchantType" name="cmbMerchantType"/>
+			<combobox id="cmbMerchantType" name="cmbMerchantType" onCha/>
 		</row>
 		<row>
 			<label value="Merchant Company Type" />
