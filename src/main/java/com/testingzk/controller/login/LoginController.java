@@ -9,8 +9,10 @@ import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
+import com.testingzk.model.dto.Ad1accessAuthenticateDTO;
 import com.testingzk.model.dto.LoginDTO;
 import com.testingzk.service.LoginService;
+import com.testingzk.service.rest.Ad1accessService;
 import com.testingzk.service.rest.MerchantService;
 
 public class LoginController extends GenericForwardComposer<Component> {
@@ -23,6 +25,7 @@ public class LoginController extends GenericForwardComposer<Component> {
 	private Button btnLogin;
 	private Textbox txtUsername, txtPassword;
 	
+	private Ad1accessService ad1accessService = new Ad1accessService();
 	private LoginService loginService = new LoginService();
 	private MerchantService voucerService = new MerchantService();
 	
@@ -36,6 +39,9 @@ public class LoginController extends GenericForwardComposer<Component> {
 	
 	public void onClick$btnLogin(Event e) {
 		System.out.println(txtUsername.getValue());
+		System.out.println("Ad1access Authenticate : "+ad1accessService.doLogin(new Ad1accessAuthenticateDTO("10000024","adira")));
+
+		
 		if (!txtUsername.getValue().equalsIgnoreCase("") && !txtPassword.getValue().equalsIgnoreCase("")) {
 			boolean flag = loginService.doLogin(new LoginDTO(txtUsername.getValue(), txtPassword.getValue()));
 			
